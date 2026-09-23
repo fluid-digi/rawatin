@@ -1,3 +1,12 @@
+# ⚠️ TEMPLATE — aktifkan kembali saat GitHub App punya izin "Workflows" write.
+#
+# Saat ini cron backup berjalan via scripts/backup.sh (bisa dijadwalkan dengan
+# Cloudflare Cron / cron VPS / service scheduler manapun). Bila mau memakai
+# GitHub Actions kembali:
+#   1. GitHub → Settings → Installations → beri izin "Workflows: Read and write"
+#   2. Salin file ini ke .github/workflows/backup.yml
+#   3. Set secrets: DATABASE_URL, R2_ACCESS_KEY_ID, R2_SECRET_ACCESS_KEY,
+#      R2_ACCOUNT_ID, R2_BUCKET
 name: rawatin-backup
 on:
   schedule:

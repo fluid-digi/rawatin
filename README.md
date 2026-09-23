@@ -87,9 +87,12 @@ node scripts/smoke.mjs        # jalankan setelah API menyala dengan Postgres lok
 - **Web** → Cloudflare Pages (root `apps/web`, build `pnpm build`, output `dist`):
   `_redirects` SPA sudah disediakan. `APP_PUBLIC_URL` menunjuk ke domain Pages
   agar URL resi benar.
-- **Backup** → `.github/workflows/backup.yml` + `scripts/backup.sh` + uji restore
-  bulanan `scripts/restore-check.sh` (PRD §11 — backup yang tidak diuji restore
-  = tidak ada backup).
+- **Backup** → `scripts/backup.sh` (pg_dump → R2, dijadwalkan via Cloudflare
+  Cron / cron VPS / scheduler apa pun) + uji restore bulanan
+  `scripts/restore-check.sh` (PRD §11 — backup yang tidak diuji restore = tidak
+  ada backup). Neon PITR & branching menyala sejak hari 1 sebagai lapisan utama.
+  - Opsional GitHub Actions: `scripts/backup.github-actions.yml` — aktifkan saat
+    GitHub App diberi izin "Workflows" (lihat komentar di file template).
 
 ## Keputusan scope (sesuai PRD §7 yang TIDAK dibangun di MVP)
 
