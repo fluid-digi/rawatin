@@ -1,5 +1,5 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from 'react'
-import { api } from '../lib/api'
+import { api, setAuthToken } from '../lib/api'
 
 export interface Session {
   user: { id: string; name: string; phone: string; role: string; lastLoginAt: string | null }
@@ -35,11 +35,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    const slug = sessionStorage.getItem('slug')
+    const slug = sessionStorage.getItem('slug') ?? localStorage.getItem('rawatin_slug')
     if (!slug) {
       setLoading(false)
       return
     }
+    sessionStorage.setItem('slug', slug)
     api
       .get<Session>(`/t/${slug}/auth/me`)
       .then((s) => {
@@ -52,15 +53,18 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const login = useCallback(async (slug: string, phone: string, pin: string) => {
     const res = await api.post<{ user: Session['user']; token: string }>(`/t/${slug}/auth/login`, { phone, pin })
-    void res
+    setAuthToken(res.token)
     sessionStorage.setItem('slug', slug)
+    localStorage.setItem('rawatin_slug', slug)
     const me = await api.get<Session>(`/t/${slug}/auth/me`)
     setSession(me)
   }, [])
 
   const logout = useCallback(async () => {
     await api.post('/logout').catch(() => undefined)
+    setAuthToken(null)
     sessionStorage.removeItem('slug')
+    localStorage.removeItem('rawatin_slug')
     setSession(null)
   }, [])
 

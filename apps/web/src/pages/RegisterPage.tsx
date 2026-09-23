@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { api } from '../lib/api'
+import { api, setAuthToken } from '../lib/api'
 import { Button, Field, inputCls } from '../components/ui'
 import { useAuth } from '../store/auth'
 
@@ -27,7 +27,7 @@ export function RegisterPage() {
     setError('')
     setBusy(true)
     try {
-      const res = await api.post<{ tenant: { slug: string } }>('/register', {
+      const res = await api.post<{ tenant: { slug: string }; token: string }>('/register', {
         name: form.name,
         slug: form.slug,
         city: form.city || undefined,
@@ -36,7 +36,9 @@ export function RegisterPage() {
         whatsapp: form.whatsapp || form.phone,
         googleMapsReviewUrl: mapsUrl || undefined,
       })
+      setAuthToken(res.token)
       sessionStorage.setItem('slug', res.tenant.slug)
+      localStorage.setItem('rawatin_slug', res.tenant.slug)
       const me = await api.get<any>(`/t/${res.tenant.slug}/auth/me`)
       setSession(me)
       nav(`/t/${res.tenant.slug}/`)
