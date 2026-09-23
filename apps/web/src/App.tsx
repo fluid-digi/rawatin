@@ -25,6 +25,7 @@ export function App() {
     <Routes>
       <Route path="/" element={<Landing />} />
       <Route path="/daftar" element={<RegisterPage />} />
+      <Route path="/login" element={<LoginPage />} />
       <Route path="/t/:slug/login" element={<LoginPage />} />
       <Route path="/r/:code" element={<ResiPage />} />
       <Route

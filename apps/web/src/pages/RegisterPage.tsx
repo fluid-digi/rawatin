@@ -85,7 +85,7 @@ export function RegisterPage() {
         </Button>
         <p className="text-center text-sm text-slate-400">
           Sudah punya akun?{' '}
-          <Link to={`/t/${form.slug || 'outlet'}/login`} className="font-semibold text-teal-700">
+          <Link to="/login" className="font-semibold text-teal-700">
             Login
           </Link>
         </p>
