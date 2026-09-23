@@ -29,9 +29,9 @@ export function InstallPrompt() {
     setHidden(true)
   }
   return (
-    <div className="border-b border-teal-100 bg-teal-50 px-4 py-2">
+    <div className="border-b border-primary-100 bg-primary-50 px-4 py-2">
       <div className="flex items-center justify-between gap-3">
-        <p className="text-sm text-teal-900">🔌 Pasang Rawatin di layar utama HP-mu.</p>
+        <p className="text-sm font-medium text-primary-900">🔌 Pasang Rawatin di layar utama HP-mu.</p>
         <div className="flex shrink-0 gap-1">
           <Button variant="ghost" className="min-h-9 px-2 py-1 text-sm" onClick={() => {
             sessionStorage.setItem('install-dismissed', '1')

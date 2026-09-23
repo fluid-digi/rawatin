@@ -40,7 +40,7 @@ export function SettingsPage() {
   return (
     <div className="space-y-4">
       <h1 className="text-xl font-black text-slate-800">Pengaturan</h1>
-      {!isOwner && <div className="rounded-xl bg-amber-50 px-4 py-3 text-sm text-amber-800">Hanya owner yang bisa mengubah pengaturan.</div>}
+      {!isOwner && <div className="rounded-2xl bg-amber-50 px-4 py-3 text-sm text-amber-800">Hanya owner yang bisa mengubah pengaturan.</div>}
       <Card>
         <h2 className="mb-3 text-sm font-bold text-slate-600">Outlet</h2>
         <div className="space-y-3">
@@ -68,10 +68,10 @@ export function SettingsPage() {
         <h2 className="mb-3 text-sm font-bold text-slate-600">Katalog layanan ({s.itemLabel})</h2>
         <div className="space-y-2">
           {(s.services ?? []).map((svc: any) => (
-            <div key={svc.id} className="rounded-xl bg-slate-50 p-3">
+            <div key={svc.id} className="rounded-2xl bg-slate-50 p-3">
               <div className="flex items-center justify-between gap-2">
                 <span className="text-sm font-bold text-slate-800">{svc.name}</span>
-                <Badge className={svc.isActive ? 'bg-emerald-100 text-emerald-700' : 'bg-slate-200 text-slate-500'}>{svc.isActive ? 'Aktif' : 'Nonaktif'}</Badge>
+                <Badge className={svc.isActive ? 'bg-turquoise-100 text-turquoise-600' : 'bg-slate-200 text-slate-500'}>{svc.isActive ? 'Aktif' : 'Nonaktif'}</Badge>
               </div>
               <div className="mt-2 flex gap-2">
                 <input className={inputCls + ' !py-2 text-sm'} inputMode="numeric" value={svc.price} disabled={!isOwner} onChange={(e) => updateService(svc, { price: Number(e.target.value.replace(/\D/g, '')) || 0 })} />
@@ -88,11 +88,11 @@ export function SettingsPage() {
       <Card>
         <h2 className="mb-2 text-sm font-bold text-slate-600">Kebijakan bukti (v2 — anti-sengketa)</h2>
         <label className="flex items-center gap-2 py-1 text-sm text-slate-700">
-          <input type="checkbox" className="h-5 w-5 accent-teal-700" checked={s.requirePickupProof} disabled={!isOwner} onChange={(e) => { setS({ ...s, requirePickupProof: e.target.checked }); save({ requirePickupProof: e.target.checked }) }} />
+          <input type="checkbox" className="h-5 w-5 accent-primary-600" checked={s.requirePickupProof} disabled={!isOwner} onChange={(e) => { setS({ ...s, requirePickupProof: e.target.checked }); save({ requirePickupProof: e.target.checked }) }} />
           Wajib foto bukti saat pengambilan (default ON — order tidak bisa Selesai tanpa foto)
         </label>
         <label className="flex items-center gap-2 py-1 text-sm text-slate-700">
-          <input type="checkbox" className="h-5 w-5 accent-teal-700" checked={s.publishConsentDefault} disabled={!isOwner} onChange={(e) => { setS({ ...s, publishConsentDefault: e.target.checked }); save({ publishConsentDefault: e.target.checked }) }} />
+          <input type="checkbox" className="h-5 w-5 accent-primary-600" checked={s.publishConsentDefault} disabled={!isOwner} onChange={(e) => { setS({ ...s, publishConsentDefault: e.target.checked }); save({ publishConsentDefault: e.target.checked }) }} />
           Izin publikasi foto default dicentang saat intake
         </label>
       </Card>
@@ -108,7 +108,7 @@ export function SettingsPage() {
       )}
       <Card>
         <h2 className="mb-2 text-sm font-bold text-slate-600">Tim</h2>
-        <Link to={`/t/${slug}/users`} className="text-sm font-semibold text-teal-700">
+        <Link to={`/t/${slug}/users`} className="text-sm font-semibold text-primary-600">
           Kelola staf & peran →
         </Link>
       </Card>

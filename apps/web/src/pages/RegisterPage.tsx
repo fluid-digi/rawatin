@@ -52,7 +52,7 @@ export function RegisterPage() {
   return (
     <div className="mx-auto min-h-dvh max-w-md bg-white px-5 py-8">
       <div className="mb-6">
-        <span className="grid h-14 w-14 place-items-center rounded-2xl bg-teal-700 text-2xl font-black text-white">R</span>
+        <span className="grid h-14 w-14 place-items-center rounded-2xl bg-primary-600 text-2xl font-black text-white">R</span>
         <h1 className="mt-4 text-2xl font-black text-slate-900">Rawatin</h1>
         <p className="text-slate-500">Sepatu nggak ketuker. Pelanggan nggak nanya-nanya. Komplain ada buktinya.</p>
       </div>
@@ -65,7 +65,7 @@ export function RegisterPage() {
             <span className="text-sm text-slate-400">rawatin.id/</span>
             <input className={inputCls} placeholder="dipclean" value={form.slug} onChange={(e) => checkSlug(e.target.value.toLowerCase())} />
           </div>
-          {slugState === 'ok' && <span className="text-xs text-emerald-600">✓ Tersedia</span>}
+          {slugState === 'ok' && <span className="text-xs text-turquoise-600">✓ Tersedia</span>}
           {slugState === 'taken' && <span className="text-xs text-red-500">Sudah dipakai outlet lain</span>}
           {slugState === 'invalid' && <span className="text-xs text-amber-600">Huruf kecil, angka, strip (min 3)</span>}
         </Field>
@@ -81,13 +81,13 @@ export function RegisterPage() {
         <Field label="PIN (4–8 digit)" hint="Dipakai login staf. Simpan baik-baik.">
           <input className={inputCls} inputMode="numeric" type="password" maxLength={8} placeholder="••••" value={form.pin} onChange={(e) => setForm({ ...form, pin: e.target.value.replace(/\D/g, '') })} />
         </Field>
-        {error && <p className="rounded-xl bg-red-50 p-3 text-sm text-red-700">{error}</p>}
+        {error && <p className="rounded-2xl bg-red-50 p-3 text-sm text-red-700">{error}</p>}
         <Button className="w-full" onClick={submit} disabled={busy || slugState !== 'ok' || !form.name || form.pin.length < 4} loading={busy}>
           Daftar & Mulai
         </Button>
         <p className="text-center text-sm text-slate-400">
           Sudah punya akun?{' '}
-          <Link to="/login" className="font-semibold text-teal-700">
+          <Link to="/login" className="font-semibold text-primary-600">
             Login
           </Link>
         </p>

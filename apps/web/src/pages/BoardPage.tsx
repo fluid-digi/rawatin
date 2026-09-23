@@ -59,14 +59,14 @@ export function BoardPage() {
   return (
     <div className="space-y-3">
       {reviewPending && (
-        <div className="rounded-xl bg-teal-50 px-4 py-3 text-sm font-semibold text-teal-800">⭐ Order selesai, belum diminta review</div>
+        <div className="rounded-2xl bg-primary-50 px-4 py-3 text-sm font-semibold text-primary-700">⭐ Order selesai, belum diminta review</div>
       )}
       {uncollected && (
-        <div className="rounded-xl bg-amber-50 px-4 py-3 text-sm font-semibold text-amber-800">⏳ Barang belum diambil &gt; {uncollected} hari</div>
+        <div className="rounded-2xl bg-amber-50 px-4 py-3 text-sm font-semibold text-amber-800">⏳ Barang belum diambil &gt; {uncollected} hari</div>
       )}
       <div className="flex gap-2">
-        <input className="w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm outline-none focus:border-teal-500" placeholder="Cari kode / nama / WA…" value={q} onChange={(e) => setQ(e.target.value)} />
-        <select className="rounded-xl border border-slate-200 bg-white px-2 py-2.5 text-sm" value={payment} onChange={(e) => setPayment(e.target.value)}>
+        <input className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-2.5 text-sm outline-none focus:border-primary-500" placeholder="Cari kode / nama / WA…" value={q} onChange={(e) => setQ(e.target.value)} />
+        <select className="rounded-2xl border border-slate-200 bg-white px-2 py-2.5 text-sm" value={payment} onChange={(e) => setPayment(e.target.value)}>
           <option value="">Semua bayar</option>
           <option value="unpaid">Belum</option>
           <option value="partial">DP</option>
@@ -103,10 +103,10 @@ export function BoardPage() {
                   <div className="mt-0.5 truncate text-sm font-semibold text-slate-600">{r.customerName}</div>
                   <div className="text-xs text-slate-400">
                     {o.itemCount} {session!.tenant.itemLabel} · {shortDate(o.receivedAt)} ·{' '}
-                    {o.paymentStatus === 'paid' ? <span className="text-emerald-600">lunas</span> : o.paymentStatus === 'partial' ? <span className="text-amber-600">DP {idr(o.paidAmount)}</span> : <span className="text-red-500">belum bayar</span>}
+                    {o.paymentStatus === 'paid' ? <span className="text-turquoise-600">lunas</span> : o.paymentStatus === 'partial' ? <span className="text-amber-600">DP {idr(o.paidAmount)}</span> : <span className="text-red-500">belum bayar</span>}
                   </div>
                 </Link>
-                {r.photo && <img src={r.photo} alt="" className="h-14 w-14 rounded-xl object-cover ring-1 ring-slate-100" />}
+                {r.photo && <img src={r.photo} alt="" className="h-14 w-14 rounded-2xl object-cover ring-1 ring-slate-100" />}
               </div>
               <div className="mt-2 flex gap-1.5">
                 <Button variant="secondary" className="min-h-10 flex-1 px-2 py-2 text-sm" onClick={() => openWa(r.customerPhone, `Halo ${r.customerName ?? ''}, order ${o.orderCode} di ${session!.tenant.name} — cek status di ${location.origin}/r/${o.orderCode}`)}>
@@ -114,9 +114,9 @@ export function BoardPage() {
                 </Button>
                 {o.status === 'completed' ? (
                   o.reviewRequestSentAt ? (
-                    <span className="flex flex-1 items-center justify-center rounded-xl bg-slate-100 px-2 py-2 text-xs font-semibold text-slate-500">⭐ Review diminta · {shortDate(o.reviewRequestSentAt)}</span>
+                    <span className="flex flex-1 items-center justify-center rounded-2xl bg-slate-100 px-2 py-2 text-xs font-semibold text-slate-500">⭐ Review diminta · {shortDate(o.reviewRequestSentAt)}</span>
                   ) : (
-                    <Link to={`/t/${slug}/orders/${o.orderCode}`} className="flex flex-1 items-center justify-center rounded-xl bg-amber-100 px-2 py-2 text-sm font-bold text-amber-800">
+                    <Link to={`/t/${slug}/orders/${o.orderCode}`} className="flex flex-1 items-center justify-center rounded-2xl bg-pink-100 px-2 py-2 text-sm font-bold text-pink-700">
                       ⭐ Minta review
                     </Link>
                   )

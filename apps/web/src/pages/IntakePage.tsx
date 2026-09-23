@@ -131,7 +131,7 @@ export function IntakePage() {
         <Card className="text-center">
           <div className="text-5xl">✅</div>
           <h2 className="mt-2 text-2xl font-black text-slate-800">Order tersimpan!</h2>
-          <div className="mt-3 rounded-2xl bg-teal-50 py-4 text-3xl font-black tracking-widest text-teal-800">{done.code}</div>
+          <div className="mt-3 rounded-2xl bg-primary-50 py-4 text-3xl font-black tracking-widest text-primary-700">{done.code}</div>
           <p className="mt-2 text-sm text-slate-500">
             {done.itemCount} {session!.tenant.itemLabel} · {fullDate(new Date())}
           </p>
@@ -162,7 +162,7 @@ export function IntakePage() {
     <div className="space-y-4">
       <h1 className="text-xl font-black text-slate-800">Order baru</h1>
       {!online && (
-        <div className="rounded-xl bg-amber-50 px-4 py-3 text-sm font-semibold text-amber-800">📴 Offline — order akan masuk antrean lokal</div>
+        <div className="rounded-2xl bg-amber-50 px-4 py-3 text-sm font-semibold text-amber-800">📴 Offline — order akan masuk antrean lokal</div>
       )}
 
       <Card>
@@ -185,7 +185,7 @@ export function IntakePage() {
                 .filter((c) => c.phone.replace(/\D/g, '').includes(phone.replace(/\D/g, '')))
                 .slice(0, 3)
                 .map((c) => (
-                  <button key={c.phone} className="block w-full rounded-lg px-2 py-1.5 text-left text-sm text-teal-700 active:bg-teal-50" onClick={() => { setPhone(c.phone); setName(c.name) }}>
+                  <button key={c.phone} className="block w-full rounded-xl px-2 py-1.5 text-left text-sm text-primary-600 active:bg-primary-50" onClick={() => { setPhone(c.phone); setName(c.name) }}>
                     {c.name} · {c.phone}
                   </button>
                 ))}
@@ -198,11 +198,11 @@ export function IntakePage() {
       </Card>
 
       {items.map((it, idx) => (
-        <Card key={idx} className={idx > 0 ? 'ring-2 ring-teal-100' : ''}>
+        <Card key={idx} className={idx > 0 ? 'ring-2 ring-primary-100' : ''}>
           <div className="mb-2 flex items-center justify-between">
             <h2 className="text-base font-bold text-slate-700">2 · Item {items.length > 1 ? idx + 1 : ''}</h2>
             {idx > 0 && (
-              <button className="rounded-lg px-2 py-1 text-sm text-red-500" onClick={() => setItems(items.filter((_, j) => j !== idx))}>
+              <button className="rounded-xl px-2 py-1 text-sm text-red-500" onClick={() => setItems(items.filter((_, j) => j !== idx))}>
                 Hapus
               </button>
             )}
@@ -218,7 +218,7 @@ export function IntakePage() {
             </div>
             <div className="flex flex-wrap gap-1.5">
               {BRAND_SUGGEST.map((b) => (
-                <button key={b} className={`rounded-full px-3 py-1.5 text-sm font-medium ${it.brand === b ? 'bg-teal-700 text-white' : 'bg-slate-100 text-slate-600'}`} onClick={() => setItem(idx, { brand: it.brand === b ? '' : b })}>
+                <button key={b} className={`rounded-full px-3 py-1.5 text-sm font-medium ${it.brand === b ? 'bg-primary-600 text-white' : 'bg-slate-100 text-slate-600'}`} onClick={() => setItem(idx, { brand: it.brand === b ? '' : b })}>
                   {b}
                 </button>
               ))}
@@ -253,7 +253,7 @@ export function IntakePage() {
               <Field label="Add-on">
                 <div className="flex flex-wrap gap-1.5">
                   {addons.map((a) => (
-                    <button key={a.id} className={`rounded-full px-3 py-1.5 text-sm font-medium ${it.addonIds.includes(a.id) ? 'bg-teal-700 text-white' : 'bg-slate-100 text-slate-600'}`} onClick={() => setItem(idx, { addonIds: it.addonIds.includes(a.id) ? it.addonIds.filter((x) => x !== a.id) : [...it.addonIds, a.id] })}>
+                    <button key={a.id} className={`rounded-full px-3 py-1.5 text-sm font-medium ${it.addonIds.includes(a.id) ? 'bg-primary-600 text-white' : 'bg-slate-100 text-slate-600'}`} onClick={() => setItem(idx, { addonIds: it.addonIds.includes(a.id) ? it.addonIds.filter((x) => x !== a.id) : [...it.addonIds, a.id] })}>
                       {a.name} · {idr(a.price)}
                     </button>
                   ))}
@@ -275,7 +275,7 @@ export function IntakePage() {
         </div>
         <div className="mb-2 flex items-center justify-between text-sm">
           <span className="text-slate-500">Diskon</span>
-          <input className="w-28 rounded-lg border border-slate-200 px-2 py-1 text-right" inputMode="numeric" value={discount || ''} onChange={(e) => setDiscount(Number(e.target.value.replace(/\D/g, '')) || 0)} placeholder="0" />
+          <input className="w-28 rounded-xl border border-slate-200 px-2 py-1 text-right" inputMode="numeric" value={discount || ''} onChange={(e) => setDiscount(Number(e.target.value.replace(/\D/g, '')) || 0)} placeholder="0" />
         </div>
         <div className="mb-3 flex items-center justify-between border-t border-slate-100 pt-2 text-base font-black text-slate-800">
           <span>Total</span>
@@ -283,7 +283,7 @@ export function IntakePage() {
         </div>
         <div className="grid grid-cols-3 gap-1.5">
           {(['full', 'dp', 'later'] as const).map((m) => (
-            <button key={m} className={`rounded-xl px-2 py-2.5 text-sm font-bold ${payMode === m ? 'bg-teal-700 text-white' : 'bg-slate-100 text-slate-600'}`} onClick={() => setPayMode(m)}>
+            <button key={m} className={`rounded-2xl px-2 py-2.5 text-sm font-bold ${payMode === m ? 'bg-primary-600 text-white' : 'bg-slate-100 text-slate-600'}`} onClick={() => setPayMode(m)}>
               {m === 'full' ? 'Lunas' : m === 'dp' ? `DP ${idr(dpAmount)}` : 'Bayar Nanti'}
             </button>
           ))}
@@ -291,7 +291,7 @@ export function IntakePage() {
         {payMode !== 'later' && (
           <div className="mt-2 grid grid-cols-3 gap-1.5">
             {(['cash', 'qris', 'transfer'] as const).map((m) => (
-              <button key={m} className={`rounded-xl px-2 py-2 text-xs font-semibold ${payMethod === m ? 'bg-slate-800 text-white' : 'bg-slate-100 text-slate-600'}`} onClick={() => setPayMethod(m)}>
+              <button key={m} className={`rounded-2xl px-2 py-2 text-xs font-semibold ${payMethod === m ? 'bg-slate-800 text-white' : 'bg-slate-100 text-slate-600'}`} onClick={() => setPayMethod(m)}>
                 {m === 'cash' ? 'Tunai' : m === 'qris' ? 'QRIS' : 'Transfer'}
               </button>
             ))}
@@ -301,13 +301,13 @@ export function IntakePage() {
 
       <Card>
         <h2 className="mb-2 text-base font-bold text-slate-700">4 · Persetujuan 🔑</h2>
-        <p className="mb-2 max-h-28 overflow-auto rounded-xl bg-slate-50 p-3 text-xs leading-relaxed text-slate-600">{disclaimer}</p>
+        <p className="mb-2 max-h-28 overflow-auto rounded-2xl bg-slate-50 p-3 text-xs leading-relaxed text-slate-600">{disclaimer}</p>
         <label className="flex items-start gap-2 py-1 text-sm text-slate-700">
-          <input type="checkbox" className="mt-1 h-5 w-5 accent-teal-700" checked={disclaimerOk} onChange={(e) => setDisclaimerOk(e.target.checked)} />
+          <input type="checkbox" className="mt-1 h-5 w-5 accent-primary-600" checked={disclaimerOk} onChange={(e) => setDisclaimerOk(e.target.checked)} />
           <span>Pelanggan setuju kondisi barang tercatat (foto + catatan) dan disclaimer outlet</span>
         </label>
         <label className="flex items-start gap-2 py-1 text-sm text-slate-700">
-          <input type="checkbox" className="mt-1 h-5 w-5 accent-teal-700" checked={publishOk} onChange={(e) => setPublishOk(e.target.checked)} />
+          <input type="checkbox" className="mt-1 h-5 w-5 accent-primary-600" checked={publishOk} onChange={(e) => setPublishOk(e.target.checked)} />
           <span>Izin publikasi foto (untuk konten sosmed outlet, mis. kartu hasil)</span>
         </label>
       </Card>

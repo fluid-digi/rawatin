@@ -49,9 +49,9 @@ export function UsersPage() {
                 <div className="text-xs text-slate-400">{u.phone}</div>
               </div>
               <div className="flex items-center gap-2">
-                <Badge className={u.role === 'owner' ? 'bg-teal-100 text-teal-800' : 'bg-slate-100 text-slate-600'}>{u.role}</Badge>
+                <Badge className={u.role === 'owner' ? 'bg-primary-100 text-primary-700' : 'bg-slate-100 text-slate-600'}>{u.role}</Badge>
                 {u.role !== 'owner' && (
-                  <button className="rounded-lg bg-slate-100 px-2 py-1 text-xs font-semibold text-slate-600" onClick={() => toggle(u)}>
+                  <button className="rounded-xl bg-slate-100 px-2 py-1 text-xs font-semibold text-slate-600" onClick={() => toggle(u)}>
                     {u.isActive ? 'Nonaktifkan' : 'Aktifkan'}
                   </button>
                 )}

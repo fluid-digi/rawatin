@@ -63,21 +63,22 @@ function png(size) {
         const v = y / size - 0.42
         const onStroke = (Math.abs(v - u) < 0.05 && u > 0 && u < 0.12) || (Math.abs(v + u - 0.26) < 0.05 && u > 0.1 && u < 0.24 && v < 0.16)
         if (onStroke) {
-          px[i] = 255
-          px[i + 1] = 255
-          px[i + 2] = 255
-          px[i + 3] = 255
+        px[i] = 255
+        px[i + 1] = 255
+        px[i + 2] = 255
+        px[i + 3] = 255
           continue
         }
-        px[i] = lerp(0x0f, 0x2d, t)
-        px[i + 1] = lerp(0x76, 0x74, t)
-        px[i + 2] = lerp(0x6e, 0x60, t)
+        // Isi perisai: putih lavender pucat (Primary-50) -> orchid muda
+        px[i] = lerp(0xfb, 0xf5, t)
+        px[i + 1] = lerp(0xf3, 0xb7, t)
+        px[i + 2] = lerp(0xfe, 0xfa, t)
         px[i + 3] = 255
       } else {
-        // background gradien teal
-        px[i] = lerp(0x0f, 0x134e, t)
-        px[i + 1] = lerp(0x76, 0x4a, t)
-        px[i + 2] = lerp(0x6e, 0x5e, t)
+        // Latar gradien Primary orchid (#9E31C0 -> #611B80)
+        px[i] = lerp(0x9e, 0x61, t)
+        px[i + 1] = lerp(0x31, 0x1b, t)
+        px[i + 2] = lerp(0xc0, 0x80, t)
         px[i + 3] = 255
       }
     }

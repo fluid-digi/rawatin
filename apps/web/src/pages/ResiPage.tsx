@@ -28,7 +28,7 @@ export function ResiPage() {
       </div>
     )
   }
-  if (!d) return <div className="grid min-h-dvh place-items-center"><div className="h-10 w-10 animate-spin rounded-full border-4 border-teal-600 border-t-transparent" /></div>
+  if (!d) return <div className="grid min-h-dvh place-items-center"><div className="h-10 w-10 animate-spin rounded-full border-4 border-primary-600 border-t-transparent" /></div>
 
   const { resi, tenant } = d
   const t = tenant
@@ -64,18 +64,18 @@ export function ResiPage() {
   return (
     <div className="min-h-dvh bg-slate-100 pb-16">
       {/* Header outlet */}
-      <div className="bg-gradient-to-b from-teal-800 to-teal-700 px-5 pb-8 pt-6 text-white">
+      <div className="bg-gradient-to-b from-primary-700 to-primary-600 px-5 pb-8 pt-6 text-white">
         <div className="flex items-center gap-3">
           {t.logoUrl ? <img src={t.logoUrl} alt="" className="h-12 w-12 rounded-2xl bg-white object-cover" /> : <span className="grid h-12 w-12 place-items-center rounded-2xl bg-white/15 text-lg font-black">R</span>}
           <div>
             <div className="text-lg font-black">{t.name}</div>
-            <div className="text-xs text-teal-100">{t.city || ''}{t.openingHours ? ` · ${t.openingHours}` : ''}</div>
+            <div className="text-xs text-primary-100">{t.city || ''}{t.openingHours ? ` · ${t.openingHours}` : ''}</div>
           </div>
         </div>
         <div className="mt-4 rounded-2xl bg-white/10 p-4">
-          <div className="text-xs text-teal-100">Nomor resi</div>
+          <div className="text-xs text-primary-100">Nomor resi</div>
           <div className="text-2xl font-black tracking-widest">{resi.code}</div>
-          <div className="mt-1 text-sm text-teal-100">
+          <div className="mt-1 text-sm text-primary-100">
             {resi.customerName} · dibuka {resi.views}x
           </div>
         </div>
@@ -88,10 +88,10 @@ export function ResiPage() {
           <div className="flex items-center gap-1">
             {resi.statusFlow.map((s: any, i: number) => (
               <div key={s.key} className="flex flex-1 items-center gap-1">
-                <span className={`grid h-6 w-6 shrink-0 place-items-center rounded-full text-[10px] font-black ${s.reached ? 'bg-teal-600 text-white' : 'bg-slate-200 text-slate-400'}`}>
+                <span className={`grid h-6 w-6 shrink-0 place-items-center rounded-full text-[10px] font-black ${s.reached ? 'bg-primary-600 text-white' : 'bg-slate-200 text-slate-400'}`}>
                   {s.reached ? '✓' : i + 1}
                 </span>
-                {i < resi.statusFlow.length - 1 && <span className={`h-1 flex-1 rounded ${resi.statusFlow[i + 1].reached ? 'bg-teal-600' : 'bg-slate-200'}`} />}
+                {i < resi.statusFlow.length - 1 && <span className={`h-1 flex-1 rounded ${resi.statusFlow[i + 1].reached ? 'bg-primary-600' : 'bg-slate-200'}`} />}
               </div>
             ))}
           </div>
@@ -108,7 +108,7 @@ export function ResiPage() {
           <h2 className="mb-3 text-sm font-bold text-slate-600">Detail item</h2>
           <div className="space-y-3">
             {resi.items.map((it: any, i: number) => (
-              <div key={i} className="rounded-xl bg-slate-50 p-3">
+              <div key={i} className="rounded-2xl bg-slate-50 p-3">
                 <div className="font-bold text-slate-800">
                   {it.brand} {it.model} {it.color && `(${it.color})`}
                 </div>
@@ -128,19 +128,19 @@ export function ResiPage() {
               <>
                 <div className="mb-1 text-xs font-semibold text-slate-400">BEFORE — saat diterima</div>
                 <div className="mb-3 grid grid-cols-4 gap-2">
-                  {before.slice(0, 4).map((p: any, i: number) => <img key={i} src={p.url} alt="" className="aspect-square rounded-lg object-cover ring-1 ring-slate-200" />)}
+                  {before.slice(0, 4).map((p: any, i: number) => <img key={i} src={p.url} alt="" className="aspect-square rounded-xl object-cover ring-1 ring-slate-200" />)}
                 </div>
               </>
             )}
             {after.length > 0 && (
               <>
-                <div className="mb-1 text-xs font-semibold text-teal-600">AFTER — hasil bersih ✨</div>
+                <div className="mb-1 text-xs font-semibold text-primary-600">AFTER — hasil bersih ✨</div>
                 <div className="grid grid-cols-4 gap-2">
-                  {after.slice(0, 4).map((p: any, i: number) => <img key={i} src={p.url} alt="" className="aspect-square rounded-lg object-cover ring-1 ring-teal-200" />)}
+                  {after.slice(0, 4).map((p: any, i: number) => <img key={i} src={p.url} alt="" className="aspect-square rounded-xl object-cover ring-1 ring-primary-200" />)}
                 </div>
               </>
             )}
-            {resi.streak && <div className="mt-3 rounded-xl bg-amber-50 px-3 py-2 text-sm font-bold text-amber-700">🏅 Cucian ke-{resi.streak} di {t.name}</div>}
+            {resi.streak && <div className="mt-3 rounded-2xl bg-amber-50 px-3 py-2 text-sm font-bold text-amber-700">🏅 Cucian ke-{resi.streak} di {t.name}</div>}
           </div>
         )}
 
@@ -150,7 +150,7 @@ export function ResiPage() {
             <h2 className="mb-1 text-sm font-bold text-slate-600">Bukti serah-terima 🧾</h2>
             <p className="mb-2 text-xs text-slate-400">Foto saat barang diambil · {fullDate(resi.pickedUpAt)}</p>
             <div className="grid grid-cols-4 gap-2">
-              {resi.photos.pickupProof.map((p: any, i: number) => <img key={i} src={p.url} alt="" className="aspect-square rounded-lg object-cover ring-2 ring-emerald-400" />)}
+              {resi.photos.pickupProof.map((p: any, i: number) => <img key={i} src={p.url} alt="" className="aspect-square rounded-xl object-cover ring-2 ring-turquoise-400" />)}
             </div>
           </div>
         )}
@@ -161,7 +161,7 @@ export function ResiPage() {
           <div className="space-y-1 text-sm text-slate-600">
             <div className="flex justify-between"><span>Total</span><span className="font-semibold">{idr(resi.total)}</span></div>
             {resi.discount > 0 && <div className="flex justify-between"><span>Diskon</span><span>-{idr(resi.discount)}</span></div>}
-            <div className="flex justify-between"><span>Dibayar</span><span className="font-semibold text-emerald-600">{idr(resi.paidAmount)}</span></div>
+            <div className="flex justify-between"><span>Dibayar</span><span className="font-semibold text-turquoise-600">{idr(resi.paidAmount)}</span></div>
             {resi.remaining > 0 && <div className="flex justify-between font-bold text-red-600"><span>Sisa</span><span>{idr(resi.remaining)}</span></div>}
           </div>
         </div>
@@ -169,7 +169,7 @@ export function ResiPage() {
         {/* Aksi */}
         <div className="space-y-2">
           {resi.canShare && after.length > 0 && before.length > 0 && (
-            <Button className="w-full bg-fuchsia-700" loading={shareBusy} onClick={share}>
+            <Button className="w-full bg-pink-600" loading={shareBusy} onClick={share}>
               ✨ Bagikan Hasil (before/after)
             </Button>
           )}
@@ -186,7 +186,7 @@ export function ResiPage() {
 
       {/* Footer viral */}
       <div className="mt-8 text-center text-xs text-slate-400">
-        <p>Dikelola dengan <b className="text-teal-700">Rawatin</b> — resi digital & bukti kondisi</p>
+        <p>Dikelola dengan <b className="text-primary-600">Rawatin</b> — resi digital & bukti kondisi</p>
         <p className="mt-0.5">rawatin.id/{t.slug}</p>
       </div>
     </div>

@@ -36,7 +36,7 @@ export function LoginPage() {
         <h1 className="text-2xl font-black text-slate-900">Masuk Rawatin</h1>
         {urlSlug && (
           <p className="mt-1 text-slate-500">
-            Outlet <span className="font-semibold text-teal-700">rawatin.id/{urlSlug}</span>
+            Outlet <span className="font-semibold text-primary-600">rawatin.id/{urlSlug}</span>
           </p>
         )}
         <div className="mt-6 space-y-3">
@@ -65,18 +65,18 @@ export function LoginPage() {
               onKeyDown={(e) => e.key === 'Enter' && submit()}
             />
           </Field>
-          {error && <p className="rounded-xl bg-red-50 p-3 text-sm text-red-700">{error}</p>}
+          {error && <p className="rounded-2xl bg-red-50 p-3 text-sm text-red-700">{error}</p>}
           <Button className="w-full" onClick={submit} disabled={busy || !slug || phone.length < 9 || pin.length < 4} loading={busy}>
             Masuk
           </Button>
           <p className="text-center text-sm text-slate-400">
             Belum punya outlet?{' '}
-            <Link to="/daftar" className="font-semibold text-teal-700">
+            <Link to="/daftar" className="font-semibold text-primary-600">
               Daftar
             </Link>
           </p>
           {!urlSlug && (
-            <p className="mt-4 rounded-xl bg-slate-50 p-3 text-center text-xs text-slate-500">
+            <p className="mt-4 rounded-2xl bg-slate-50 p-3 text-center text-xs text-slate-500">
               Demo: slug <b>dipdemo</b> · WA 081234567890 · PIN 123456
             </p>
           )}

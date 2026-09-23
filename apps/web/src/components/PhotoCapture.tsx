@@ -43,7 +43,7 @@ export function PhotoCapture({
       {photos.length > 0 && (
         <div className="mb-2 grid grid-cols-4 gap-2">
           {photos.map((p, i) => (
-            <div key={i} className="relative aspect-square overflow-hidden rounded-lg ring-1 ring-slate-200">
+            <div key={i} className="relative aspect-square overflow-hidden rounded-2xl ring-1 ring-slate-200">
               <img src={p.dataUrl} alt={`foto ${i + 1}`} className="h-full w-full object-cover" />
               <button
                 className="absolute right-1 top-1 grid h-6 w-6 place-items-center rounded-full bg-black/55 text-xs text-white"
@@ -64,11 +64,11 @@ export function PhotoCapture({
         <div className="grid grid-cols-2 gap-2">
           <button
             onClick={() => inputRef.current?.click()}
-            className="rounded-xl border-2 border-dashed border-teal-300 bg-teal-50 px-3 py-3 text-base font-semibold text-teal-800 active:bg-teal-100"
+            className="rounded-2xl border-2 border-dashed border-primary-300 bg-primary-50 px-3 py-3 text-base font-bold text-primary-700 active:bg-primary-100"
           >
             {captureLabel} <span className="text-xs font-normal">({max - photos.length} lagi)</span>
           </button>
-          <button onClick={() => inputRef.current?.click()} className="rounded-xl border-2 border-dashed border-slate-200 px-3 py-3 text-base font-semibold text-slate-600 active:bg-slate-50">
+          <button onClick={() => inputRef.current?.click()} className="rounded-2xl border-2 border-dashed border-slate-200 px-3 py-3 text-base font-bold text-slate-600 active:bg-slate-50">
             {galleryLabel} ←
           </button>
         </div>

@@ -24,7 +24,7 @@ export function ReportsPage() {
 
   if (!data) return <p className="p-6 text-center text-slate-400">Memuat…</p>
   const cards = [
-    ['Omzet', idr(data.omzet), 'text-teal-800'],
+    ['Omzet', idr(data.omzet), 'text-primary-700'],
     ['Order', String(data.orderCount), 'text-slate-800'],
     ['Rata-rata/order', idr(data.avgPerOrder), 'text-slate-800'],
     ['Piutang', idr(data.piutang), 'text-red-600'],
@@ -34,9 +34,9 @@ export function ReportsPage() {
     <div className="space-y-4">
       <div className="flex items-center justify-between">
         <h1 className="text-xl font-black text-slate-800">Laporan</h1>
-        <div className="flex gap-1 rounded-xl bg-white p-1 ring-1 ring-slate-200">
+        <div className="flex gap-1 rounded-2xl bg-white p-1 ring-1 ring-slate-200">
           {(['today', 'week', 'month'] as const).map((r) => (
-            <button key={r} className={`rounded-lg px-3 py-1.5 text-sm font-bold ${range === r ? 'bg-teal-700 text-white' : 'text-slate-500'}`} onClick={() => setRange(r)}>
+            <button key={r} className={`rounded-xl px-3 py-1.5 text-sm font-bold ${range === r ? 'bg-primary-600 text-white' : 'text-slate-500'}`} onClick={() => setRange(r)}>
               {r === 'today' ? 'Hari' : r === 'week' ? '7 hari' : 'Bulan'}
             </button>
           ))}
@@ -53,7 +53,7 @@ export function ReportsPage() {
       <Card>
         <div className="mb-2 flex items-center justify-between">
           <h2 className="text-sm font-bold text-slate-600">Layanan terlaris</h2>
-          <a className="text-xs font-semibold text-teal-700" href={`/api/t/${slug}/reports/export.csv`}>
+          <a className="text-xs font-semibold text-primary-600" href={`/api/t/${slug}/reports/export.csv`}>
             ⬇ Export CSV
           </a>
         </div>
@@ -94,9 +94,9 @@ export function ReportsPage() {
           ))}
         </div>
       </Card>
-      <Card className="bg-teal-50 ring-teal-100">
-        <h2 className="mb-1 text-sm font-bold text-teal-800">Growth outlet</h2>
-        <p className="text-xs text-teal-700">
+      <Card className="bg-primary-50 ring-primary-100">
+        <h2 className="mb-1 text-sm font-bold text-primary-700">Growth outlet</h2>
+        <p className="text-xs text-primary-600">
           ⭐ Review diminta: <b>{data.reviewSent}</b> · ✨ Kartu dibagikan: <b>{data.shareEvents}</b>
         </p>
       </Card>
@@ -109,12 +109,12 @@ export function ReportsPage() {
           ) : (
             <div className="space-y-2">
               {reviewList.map((r) => (
-                <div key={r.order.id} className="flex items-center justify-between gap-2 rounded-xl bg-slate-50 p-3">
+                <div key={r.order.id} className="flex items-center justify-between gap-2 rounded-2xl bg-slate-50 p-3">
                   <div className="min-w-0">
                     <div className="truncate text-sm font-bold text-slate-800">{r.customerName}</div>
                     <div className="text-xs text-slate-400">{r.order.orderCode}</div>
                   </div>
-                  <Link to={`/t/${slug}/orders/${r.order.orderCode}`} className="shrink-0 rounded-xl bg-amber-400 px-3 py-2 text-sm font-bold text-amber-950">
+                  <Link to={`/t/${slug}/orders/${r.order.orderCode}`} className="shrink-0 rounded-2xl bg-amber-400 px-3 py-2 text-sm font-bold text-amber-950">
                     Minta ⭐
                   </Link>
                 </div>

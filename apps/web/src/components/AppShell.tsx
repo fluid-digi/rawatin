@@ -16,58 +16,60 @@ export function AppShell({ children }: { children: ReactNode }) {
     { to: `/t/${slug}/reports`, label: 'Laporan', icon: '▤' },
   ]
   return (
-    <div className="mx-auto flex min-h-dvh max-w-3xl flex-col bg-slate-100">
+    <div className="mx-auto flex min-h-dvh max-w-3xl flex-col">
       {/* Header */}
-      <header className="sticky top-0 z-30 flex items-center justify-between gap-2 bg-white px-4 py-3 shadow-sm">
+      <header className="sticky top-0 z-30 flex items-center justify-between gap-2 bg-white/80 px-4 py-3 backdrop-blur-md">
         <div className="flex min-w-0 items-center gap-2">
-          {!online && <span className="h-2.5 w-2.5 shrink-0 rounded-full bg-amber-400" title="offline" />}
+          {!online && <span className="h-2.5 w-2.5 shrink-0 rounded-full bg-pink-500" title="offline" />}
           {session?.tenant.logoUrl ? (
-            <img src={session.tenant.logoUrl} alt="" className="h-8 w-8 rounded-lg object-cover" />
+            <img src={session.tenant.logoUrl} alt="" className="h-9 w-9 rounded-2xl object-cover" />
           ) : (
-            <span className="grid h-8 w-8 place-items-center rounded-lg bg-teal-700 text-sm font-black text-white">R</span>
+            <span className="grid h-9 w-9 place-items-center rounded-2xl bg-primary-500 text-sm font-black text-white shadow-md shadow-primary-500/30">R</span>
           )}
           <div className="min-w-0">
-            <div className="truncate text-sm font-bold text-slate-800">{session?.tenant.name ?? 'Rawatin'}</div>
-            <div className="text-xs text-slate-400">rawatin.id/{slug}</div>
+            <div className="truncate text-sm font-extrabold text-slate-800">{session?.tenant.name ?? 'Rawatin'}</div>
+            <div className="text-xs font-medium text-primary-600">rawatin.id/{slug}</div>
           </div>
         </div>
-        <div className="flex shrink-0 items-center gap-2">
-          <Link to={`/t/${slug}/settings`} className="grid h-9 w-9 place-items-center rounded-lg text-slate-500 active:bg-slate-100" title="Pengaturan">
+        <div className="flex shrink-0 items-center gap-1">
+          <Link to={`/t/${slug}/settings`} className="grid h-9 w-9 place-items-center rounded-2xl text-slate-500 active:bg-slate-100" title="Pengaturan">
             ⚙
           </Link>
-          <button onClick={() => logout()} className="grid h-9 w-9 place-items-center rounded-lg text-slate-500 active:bg-slate-100" title="Keluar">
+          <button onClick={() => logout()} className="grid h-9 w-9 place-items-center rounded-2xl text-slate-500 active:bg-slate-100" title="Keluar">
             ⎋
           </button>
         </div>
       </header>
       <InstallPrompt />
       <main className="flex-1 px-3 pb-28 pt-3">{children}</main>
-      {/* Bottom nav (mobile-first, persona Rani) */}
-      <nav className="pb-safe fixed inset-x-0 bottom-0 z-30 border-t border-slate-200 bg-white">
-        <div className="mx-auto grid max-w-3xl grid-cols-5">
-          {nav.map((item, i) => {
-            const isCenter = i === 2
-            return (
-              <NavLink
-                key={item.to}
-                to={item.to}
-                className={({ isActive }) =>
-                  `flex flex-col items-center gap-0.5 py-2 text-[11px] font-semibold ${
-                    isActive && !isCenter ? 'text-teal-700' : 'text-slate-400'
-                  }`
-                }
-              >
-                {isCenter ? (
-                  <span className="-mt-5 grid h-14 w-14 place-items-center rounded-2xl bg-teal-700 text-2xl font-black text-white shadow-lg shadow-teal-700/30">
-                    {item.icon}
-                  </span>
-                ) : (
-                  <span className="text-xl leading-none">{item.icon}</span>
-                )}
-                {item.label}
-              </NavLink>
-            )
-          })}
+      {/* Bottom nav (mobile-first, tombol tengah mengambang ala Style Guide) */}
+      <nav className="pb-safe fixed inset-x-0 bottom-0 z-30">
+        <div className="mx-auto max-w-3xl px-3 pb-3">
+          <div className="flex items-center justify-between rounded-[28px] bg-white px-2 py-2 shadow-[0_8px_30px_-6px_rgba(157,49,192,0.25)] ring-1 ring-primary-50">
+            {nav.map((item, i) => {
+              const isCenter = i === 2
+              return (
+                <NavLink
+                  key={item.to}
+                  to={item.to}
+                  className={({ isActive }) =>
+                    `flex flex-1 flex-col items-center gap-0.5 rounded-2xl py-1.5 text-[11px] font-bold ${
+                      isActive && !isCenter ? 'text-primary-600' : isCenter ? '' : 'text-slate-400'
+                    }`
+                  }
+                >
+                  {isCenter ? (
+                    <span className="-mt-8 grid h-14 w-14 place-items-center rounded-full bg-primary-500 text-2xl font-black text-white shadow-lg shadow-primary-500/40">
+                      {item.icon}
+                    </span>
+                  ) : (
+                    <span className="text-xl leading-none">{item.icon}</span>
+                  )}
+                  {!isCenter && item.label}
+                </NavLink>
+              )
+            })}
+          </div>
         </div>
       </nav>
     </div>

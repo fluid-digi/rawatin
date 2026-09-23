@@ -34,10 +34,11 @@ export async function renderShareCard(data: ShareCardData, ratio: '1:1' | '9:16'
   canvas.height = H
   const ctx = canvas.getContext('2d')!
 
-  // Latar gradien
-  const grad = ctx.createLinearGradient(0, 0, 0, H)
-  grad.addColorStop(0, '#022c22')
-  grad.addColorStop(1, '#134e4a')
+  // Latar gradien — palet brand Rawatin (Primary orchid → Sky blue)
+  const grad = ctx.createLinearGradient(0, 0, W, H)
+  grad.addColorStop(0, '#7d24a0')
+  grad.addColorStop(0.55, '#9e31c0')
+  grad.addColorStop(1, '#3e6bf0')
   ctx.fillStyle = grad
   ctx.fillRect(0, 0, W, H)
 
@@ -45,7 +46,7 @@ export async function renderShareCard(data: ShareCardData, ratio: '1:1' | '9:16'
   ctx.textAlign = 'center'
 
   // Badge
-  ctx.fillStyle = '#fbbf24'
+  ctx.fillStyle = '#ffc0e0'
   ctx.font = `bold ${ratio === '1:1' ? 54 : 60}px system-ui, sans-serif`
   ctx.fillText(data.badge, W / 2, ratio === '1:1' ? 130 : 150)
 
@@ -92,17 +93,17 @@ export async function renderShareCard(data: ShareCardData, ratio: '1:1' | '9:16'
   ctx.font = `bold ${ratio === '1:1' ? 44 : 46}px system-ui`
   ctx.fillText(data.itemLabel, W / 2, baseY)
   if (data.streak) {
-    ctx.fillStyle = '#fbbf24'
+    ctx.fillStyle = '#ffc0e0'
     ctx.font = `${ratio === '1:1' ? 34 : 36}px system-ui`
     ctx.fillText(`Cucian ke-${data.streak} 🎉`, W / 2, baseY + 64)
   }
 
   // Footer outlet + watermark
   const footY = ratio === '1:1' ? H - 70 : H - 90
-  ctx.fillStyle = '#99f6e4'
+  ctx.fillStyle = '#a9eedd'
   ctx.font = `bold ${ratio === '1:1' ? 36 : 40}px system-ui`
   ctx.fillText(data.outletName, W / 2, footY - 40)
-  ctx.fillStyle = 'rgba(153,246,228,0.8)'
+  ctx.fillStyle = 'rgba(169,238,221,0.85)'
   ctx.font = `30px system-ui`
   ctx.fillText(`rawatin.id/${data.outletSlug} · ${data.orderCode}`, W / 2, footY)
 

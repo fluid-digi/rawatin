@@ -1,17 +1,79 @@
 @import 'tailwindcss';
+@import '@fontsource/outfit/400.css';
+@import '@fontsource/outfit/500.css';
+@import '@fontsource/outfit/600.css';
+@import '@fontsource/outfit/700.css';
+@import '@fontsource/outfit/800.css';
+
+/*
+ * Rawatin design tokens — diturunkan dari Style Guide (font Outfit,
+ * Primary #F5B7FA, Light Sky Blue #82ACFF, Medium Turquoise #55D8C1,
+ * Black Pink #FF6FB5). Setiap warna dijadikan skala 50–900 agar
+ * konsisten dipakai sebagai bg/text/ring di seluruh komponen.
+ */
+@theme {
+  --font-sans: 'Outfit', ui-sans-serif, system-ui, sans-serif;
+
+  --color-primary-50: #fbf3fe;
+  --color-primary-100: #f6e4fc;
+  --color-primary-200: #f5b7fa;
+  --color-primary-300: #e896f5;
+  --color-primary-400: #d66bee;
+  --color-primary-500: #bd46de;
+  --color-primary-600: #9e31c0;
+  --color-primary-700: #7d24a0;
+  --color-primary-800: #611b80;
+  --color-primary-900: #451260;
+
+  --color-sky-50: #f1f6ff;
+  --color-sky-100: #e3edff;
+  --color-sky-200: #c7dbff;
+  --color-sky-300: #a6c4ff;
+  --color-sky-400: #82acff;
+  --color-sky-500: #5d8cff;
+  --color-sky-600: #3e6bf0;
+  --color-sky-700: #2e52c4;
+  --color-sky-800: #223e96;
+  --color-sky-900: #172b68;
+
+  --color-turquoise-50: #eafbf7;
+  --color-turquoise-100: #cff6ed;
+  --color-turquoise-200: #a9eedd;
+  --color-turquoise-300: #7ee4cc;
+  --color-turquoise-400: #55d8c1;
+  --color-turquoise-500: #2fc1ac;
+  --color-turquoise-600: #1fa491;
+  --color-turquoise-700: #187f71;
+  --color-turquoise-800: #135f55;
+  --color-turquoise-900: #0d4740;
+
+  --color-pink-50: #fff1f8;
+  --color-pink-100: #ffdfef;
+  --color-pink-200: #ffc0e0;
+  --color-pink-300: #ff9bcb;
+  --color-pink-400: #ff85bf;
+  --color-pink-500: #ff6fb5;
+  --color-pink-600: #f0409a;
+  --color-pink-700: #c92b7d;
+  --color-pink-800: #9e2064;
+  --color-pink-900: #74184a;
+}
 
 :root {
   color-scheme: light;
 }
 
-html, body {
-  font-family: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
-  background: #f1f5f9;
+html,
+body {
+  font-family: var(--font-sans);
+  background: linear-gradient(180deg, #fdf5ff 0%, #f4f7ff 45%, #f2fbf9 100%);
+  background-attachment: fixed;
   -webkit-tap-highlight-color: transparent;
 }
 
 button {
   touch-action: manipulation;
+  font-family: inherit;
 }
 
 /* Safe area untuk PWA fullscreen */

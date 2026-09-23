@@ -33,7 +33,7 @@ export function DashboardPage() {
       <div className="grid grid-cols-2 gap-3">
         <Card>
           <div className="text-xs text-slate-400">Omzet hari ini</div>
-          <div className="text-xl font-black text-teal-800">{idr(data.todayRevenue)}</div>
+          <div className="text-xl font-black text-primary-700">{idr(data.todayRevenue)}</div>
           <div className="text-xs text-slate-400">{data.todayOrders} order</div>
         </Card>
         <Card>
@@ -46,7 +46,7 @@ export function DashboardPage() {
         <div className="mb-2 text-xs font-semibold text-slate-400">Pekerjaan aktif</div>
         <div className="grid grid-cols-4 gap-2 text-center">
           {(['received', 'in_progress', 'finishing', 'ready'] as const).map((s) => (
-            <Link key={s} to={`/t/${slug}/board`} className="rounded-xl bg-slate-50 py-3">
+            <Link key={s} to={`/t/${slug}/board`} className="rounded-2xl bg-slate-50 py-3">
               <div className="text-2xl font-black text-slate-800">{data.byStatus[s]}</div>
               <div className="text-[11px] text-slate-500">{ORDER_STATUS[s]!.label}</div>
             </Link>
@@ -67,20 +67,20 @@ export function DashboardPage() {
         <Link to={`/t/${slug}/board?reviewPending=1`}>
           <Card>
             <div className="text-xs text-slate-400">Minta review ⭐</div>
-            <div className="text-lg font-black text-teal-700">{data.reviewQueue}</div>
+            <div className="text-lg font-black text-primary-600">{data.reviewQueue}</div>
             <div className="text-[11px] text-slate-400">selesai, belum diminta</div>
           </Card>
         </Link>
       </div>
 
       {data.pickupProofCompliance !== null && (
-        <Card className="bg-teal-50 ring-teal-100">
+        <Card className="bg-primary-50 ring-primary-100">
           <div className="flex items-center justify-between">
             <div>
-              <div className="text-xs font-semibold text-teal-700">Kepatuhan bukti pengambilan</div>
-              <div className="text-[11px] text-teal-600">{data.pickupProofCompliance}% order selesai punya foto bukti</div>
+              <div className="text-xs font-semibold text-primary-600">Kepatuhan bukti pengambilan</div>
+              <div className="text-[11px] text-primary-600">{data.pickupProofCompliance}% order selesai punya foto bukti</div>
             </div>
-            <Badge className={data.pickupProofCompliance >= 95 ? 'bg-emerald-100 text-emerald-700' : 'bg-amber-100 text-amber-700'}>
+            <Badge className={data.pickupProofCompliance >= 95 ? 'bg-turquoise-100 text-turquoise-600' : 'bg-amber-100 text-amber-700'}>
               {data.pickupProofCompliance >= 95 ? 'Aman ✓' : 'Cek staf!'}
             </Badge>
           </div>
@@ -90,21 +90,21 @@ export function DashboardPage() {
       <Card>
         <div className="mb-2 flex items-center justify-between">
           <div className="text-xs font-semibold text-slate-400">Siap diambil — siapkan WA</div>
-          <Link to={`/t/${slug}/board`} className="text-xs font-semibold text-teal-700">
+          <Link to={`/t/${slug}/board`} className="text-xs font-semibold text-primary-600">
             Lihat semua
           </Link>
         </div>
         {queue.length === 0 && <p className="text-sm text-slate-400">Tidak ada yang siap diambil.</p>}
         <div className="space-y-2">
           {queue.slice(0, 4).map((o) => (
-            <Link key={o.order.id} to={`/t/${slug}/orders/${o.order.orderCode}`} className="flex items-center justify-between rounded-xl bg-slate-50 p-3">
+            <Link key={o.order.id} to={`/t/${slug}/orders/${o.order.orderCode}`} className="flex items-center justify-between rounded-2xl bg-slate-50 p-3">
               <div className="min-w-0">
                 <div className="truncate text-sm font-bold text-slate-800">{o.customerName}</div>
                 <div className="text-xs text-slate-400">
                   {o.order.orderCode} · {daysAgo(o.order.readyAt ?? o.order.receivedAt)} hari
                 </div>
               </div>
-              <span className="text-xs font-semibold text-teal-700">Buka →</span>
+              <span className="text-xs font-semibold text-primary-600">Buka →</span>
             </Link>
           ))}
         </div>
@@ -114,7 +114,7 @@ export function DashboardPage() {
         <div className="mb-2 text-xs font-semibold text-slate-400">Order terbaru</div>
         <div className="space-y-2">
           {data.recent.map((r) => (
-            <Link key={r.order.id} to={`/t/${slug}/orders/${r.order.orderCode}`} className="flex items-center justify-between rounded-xl bg-slate-50 p-3">
+            <Link key={r.order.id} to={`/t/${slug}/orders/${r.order.orderCode}`} className="flex items-center justify-between rounded-2xl bg-slate-50 p-3">
               <div className="min-w-0">
                 <div className="truncate text-sm font-bold text-slate-800">{r.customerName}</div>
                 <div className="text-xs text-slate-400">

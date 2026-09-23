@@ -16,7 +16,7 @@ export function CustomersPage() {
   return (
     <div className="space-y-3">
       <h1 className="text-xl font-black text-slate-800">Pelanggan</h1>
-      <input className="w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm outline-none focus:border-teal-500" placeholder="Cari nama / nomor…" value={q} onChange={(e) => setQ(e.target.value)} />
+      <input className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-2.5 text-sm outline-none focus:border-primary-500" placeholder="Cari nama / nomor…" value={q} onChange={(e) => setQ(e.target.value)} />
       <div className="space-y-2">
         {rows.map((c) => (
           <Card key={c.id} className="!p-3">
