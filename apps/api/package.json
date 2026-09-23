@@ -1,0 +1,31 @@
+{
+  "name": "@rawatin/api",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/serve.ts",
+    "start": "tsx src/serve.ts",
+    "build": "tsc --noEmit",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@rawatin/db": "workspace:*",
+    "@neondatabase/serverless": "^0.10.0",
+    "drizzle-orm": "^0.44.0",
+    "hono": "^4.6.0",
+    "@hono/node-server": "^1.13.0",
+    "jose": "^6.0.0",
+    "pdf-lib": "^1.17.1",
+    "postgres": "^3.4.5",
+    "qrcode": "^1.5.4",
+    "zod": "^3.25.0"
+  },
+  "devDependencies": {
+    "@types/qrcode": "^1.5.5",
+    "dotenv": "^16.4.5",
+    "tsx": "^4.19.0",
+    "vitest": "^3.0.0"
+  }
+}

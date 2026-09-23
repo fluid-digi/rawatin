@@ -1,0 +1,29 @@
+name: rawatin-backup
+on:
+  schedule:
+    # Setiap hari 02:00 UTC
+    - cron: '0 2 * * *'
+  workflow_dispatch:
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install pg_dump & aws cli
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq postgresql-client awscli
+      - name: pg_dump + upload ke R2 (bucket terpisah)
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          ENDPOINT: https://${{ secrets.R2_ACCOUNT_ID }}.r2.cloudflarestorage.com
+          BUCKET: ${{ secrets.R2_BUCKET }}
+        run: |
+          set -euo pipefail
+          STAMP=$(date -u +%Y%m%d-%H%M%S)
+          pg_dump --no-owner --no-privileges "$DATABASE_URL" | gzip -9 > "rawatin-$STAMP.sql.gz"
+          export AWS_EC2_METADATA_DISABLED=true
+          aws s3 cp "rawatin-$STAMP.sql.gz" "s3://$BUCKET/backups/" --endpoint-url "$ENDPOINT"
+          echo "✓ backup $STAMP terupload"

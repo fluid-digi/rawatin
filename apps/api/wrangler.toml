@@ -1,0 +1,17 @@
+name = "rawatin-api"
+main = "src/worker.ts"
+compatibility_date = "2025-09-01"
+nodejs_compat = true
+workers_dev = true
+
+# Isi lewat dashboard/`wrangler secret put` — jangan commit di sini:
+# DATABASE_URL, SESSION_SECRET, PIN_SALT, R2_ACCESS_KEY_ID, R2_SECRET_ACCESS_KEY
+
+[vars]
+APP_BASE_URL = "https://rawatin-api.<subdomain>.workers.dev"
+WEB_ORIGIN = "https://rawatin.pages.dev"
+APP_PUBLIC_URL = "https://rawatin.pages.dev"
+R2_PUBLIC_URL = "https://cdn.rawatin.id"
+
+[routes]
+# kosong — subdirectory di-handle frontend; API tetap path /api/*

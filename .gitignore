@@ -1,0 +1,25 @@
+node_modules/
+dist/
+.turbo/
+.wrangler/
+.DS_Store
+*.log
+
+# env / secrets
+.env
+.env.local
+.env.*.local
+
+# local runtime data
+apps/api/data/
+data/
+backups/
+
+# test artifacts
+coverage/
+*.tsbuildinfo
+
+# editor
+.idea/
+.vscode/
+.history/

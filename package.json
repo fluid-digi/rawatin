@@ -1,0 +1,35 @@
+{
+  "name": "rawatin",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Rawatin — sistem operasional barang titipan untuk outlet cuci sepatu (MVP)",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "dev": "concurrently -n api,web -c blue,green \"pnpm --filter @rawatin/api dev\" \"pnpm --filter @rawatin/web dev\"",
+    "build": "pnpm -r build",
+    "typecheck": "pnpm -r typecheck",
+    "db:generate": "pnpm --filter @rawatin/db generate",
+    "db:migrate": "pnpm --filter @rawatin/db migrate",
+    "db:seed": "pnpm --filter @rawatin/db seed",
+    "db:studio": "pnpm --filter @rawatin/db studio",
+    "test": "pnpm -r test"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "concurrently": "^9.0.0",
+    "drizzle-kit": "^0.31.0",
+    "typescript": "^5.7.0"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild"
+    ]
+  },
+  "engines": {
+    "node": ">=20.19.0"
+  },
+  "packageManager": "pnpm@10.26.0"
+}
